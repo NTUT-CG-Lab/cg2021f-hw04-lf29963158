@@ -97,6 +97,8 @@
 			let sceneArray = new Array(3); //save scene
 			let guiArray = new Array(3);
 			const output = new Array(3);
+			let listArray = new Array(3);
+			let engListArray = new Array(3);
 
 			const modelFile = ['models/mmd/KizunaAI_ver1.01/KizunaAI_ver1.01/kizunaai.pmx', 'models/mmd/『天宮こころ(Kokoro Amamiya)』/『天宮こころ(Kokoro Amamiya)』.pmx', 'models/mmd/るいのれ式物述有栖_配布用フォルダ/物述有栖.pmx'];
 			const modelName = ['kizunaai', '天宮こころ(Kokoro Amamiya)', 'るいのれ式物述有栖'];
@@ -256,6 +258,7 @@
 					const keys = [];
 
 					const model = gui.addFolder(modelName[index]);
+					listArray[index] = model;
 					const poses = model.addFolder( 'Poses' );
 					const morphs = model.addFolder( 'Morphs' );
 
@@ -354,6 +357,9 @@
 
 					poses.open();
 					morphs.open();
+					if(index == 0){
+						model.open();
+					}
 
 				}
 
@@ -363,6 +369,7 @@
 				// const guiEng = new GUI();
 				let controls = {};
 				const model = guiEng.addFolder(modelName[index]);
+				engListArray[index] = model;
 				const stdlist = model.addFolder( 'stdlist' );
 
 				for ( const key in standardlist ) {
@@ -383,6 +390,9 @@
 				}
 				pArray[index] = controls;
 				stdlist.open();
+				if(index == 0){
+					model.open();
+				}
 				
 
 			}
@@ -419,16 +429,24 @@
 				}else if (keyCode == 'd') {//keyA
 					savePositionToJson();//更新Json資料
 					scene.remove(modelArray[modelIndex]);
+					listArray[modelIndex].close();
+					engListArray[modelIndex].close();
 					if (modelIndex == 2) modelIndex = 0
 					else modelIndex += 1;
 					//console.log(modelIndex);
+					listArray[modelIndex].open();
+					engListArray[modelIndex].open();
 					changeModel();
 				}else if (keyCode == 'a') {//keyD
 					savePositionToJson();//更新Json資料
 					scene.remove(modelArray[modelIndex]);
+					listArray[modelIndex].close();
+					engListArray[modelIndex].close();
 					if (modelIndex == 0) modelIndex = 2
 					else modelIndex -= 1;
 					//console.log(modelIndex);
+					listArray[modelIndex].open();
+					engListArray[modelIndex].open();
 					changeModel();
 				}else if (keyCode == 's') {//keyS
 					savePositionToJson();
