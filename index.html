@@ -99,7 +99,7 @@
 			const output = new Array(3);
 			let listArray = new Array(3);
 			let engListArray = new Array(3);
-
+			
 			const modelFile = ['models/mmd/KizunaAI_ver1.01/KizunaAI_ver1.01/kizunaai.pmx', 'models/mmd/『天宮こころ(Kokoro Amamiya)』/『天宮こころ(Kokoro Amamiya)』.pmx', 'models/mmd/るいのれ式物述有栖_配布用フォルダ/物述有栖.pmx'];
 			const modelName = ['kizunaai', '天宮こころ(Kokoro Amamiya)', 'るいのれ式物述有栖'];
 
@@ -190,7 +190,7 @@
 					//console.log(i);
 				mesh = object;
 				mesh.position.y = - 10;
-				modelArray.push(mesh);
+				modelArray[i] = mesh;
 				
 				sceneArray[i].add(object);
 				//guiArray.push(new gui(mesh));
@@ -215,7 +215,7 @@
 							loadVpd();
 
 						} else {
-
+							console.log(i);
 							
 							initGui(i);
 							initEngGui(i);
@@ -246,7 +246,7 @@
 
 					// const gui = new GUI();
 
-					var dictionary = mesh.morphTargetDictionary;
+					var dictionary = modelArray[index].morphTargetDictionary;
 
 					const new_directory = {};
 					for (const key in dictionary) {
